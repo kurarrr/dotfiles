@@ -1,0 +1,7 @@
+*~
+.DS_Store
+node_modules/
+__pycache__
+bower_components
+/vendor/bundle
+.vscode
