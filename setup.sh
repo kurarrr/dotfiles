@@ -54,10 +54,6 @@ if [ ! -d ${DOT_DIRECTORY} ]; then
 fi
 
 cd ${DOT_DIRECTORY}
-source ./lib/brew
-source ./lib/go
-source ./lib/apt-get
-source ./lib/yarn
 
 link_files() {
   for f in .??*
