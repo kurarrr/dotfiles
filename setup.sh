@@ -75,17 +75,17 @@ link_files() {
 initialize() {
   case ${OSTYPE} in
     darwin*)
-      run_brew
-
-      if [ ! -e ~/Library/Fonts/Cica-Regular.ttf ]; then
-        wget https://github.com/miiton/Cica/releases/download/v2.1.0/Cica_v2.1.0.zip
-        unar Cica_v2.1.0.zip
-        cp -f Cica_v2.1.0/Cica*.ttf ${HOME}/Library/Fonts/
-        rm -rf Cica_v2.1.0*
+      # install homebrew
+      if ! command -v brew > /dev/null 2>&1; then
+          # Install homebrew: https://brew.sh/
+          /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+          echo
       fi
+      brew bundle
+      echo
       ;;
     linux-gnu)
-      run_apt
+      # nope
       ;;
     *)
       echo $(tput setaf 1)Working only OSX / Ubuntu!!$(tput sgr0)
@@ -96,23 +96,16 @@ initialize() {
   # use zsh as default
   [ ${SHELL} != "/bin/zsh"  ] && chsh -s /bin/zsh
 
-  if [ ! -d ${HOME}/.anyenv ]; then
-    git clone https://github.com/riywo/anyenv ~/.anyenv
-    anyenv install goenv
-    anyenv install rbenv
-    anyenv install pyenv
-    anyenv install phpenv
-    anyenv install ndenv
-    exec $SHELL -l
-  fi
-
-  run_go
-  run_yarn
-
-  [ ! -d ${HOME}/.zplug ] && curl -sL zplug.sh/installer | zsh
-  [ ! -d ${HOME}/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
-  ghq get -u flutter/flutter.git
-  flutter doctor
+  # use aneynv ? 
+  # if [ ! -d ${HOME}/.anyenv ]; then
+  #   git clone https://github.com/riywo/anyenv ~/.anyenv
+  #   anyenv install goenv
+  #   anyenv install rbenv
+  #   anyenv install pyenv
+  #   anyenv install phpenv
+  #   anyenv install ndenv
+  #   exec $SHELL -l
+  # fi
 
   set +e
   if has "pyenv"; then
