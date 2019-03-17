@@ -55,6 +55,8 @@ fi
 
 cd ${DOT_DIRECTORY}
 
+source ./lib/configure
+
 link_files() {
   # add symbolic link
   for f in .??*
@@ -83,6 +85,7 @@ initialize() {
       fi
       brew bundle
       echo
+      mac_configure
       ;;
     linux-gnu)
       # nope
