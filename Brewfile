@@ -10,7 +10,6 @@ brew "awscli"
 brew "cmake"
 brew "cppcheck"
 brew "dep"
-brew "docker", link: false
 brew "ghostscript"
 brew "ffmpeg"
 brew "fig2dev"
