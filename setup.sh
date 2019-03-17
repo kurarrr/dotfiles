@@ -56,6 +56,7 @@ fi
 cd ${DOT_DIRECTORY}
 
 link_files() {
+  # add symbolic link
   for f in .??*
   do
     # Force remove the vim directory if it's already there
@@ -92,6 +93,7 @@ initialize() {
       ;;
   esac
 
+  # use zsh as default
   [ ${SHELL} != "/bin/zsh"  ] && chsh -s /bin/zsh
 
   if [ ! -d ${HOME}/.anyenv ]; then
