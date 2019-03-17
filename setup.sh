@@ -3,8 +3,8 @@
 set -e
 OS="$(uname -s)"
 DOT_DIRECTORY="${HOME}/dotfiles"
-DOT_TARBALL="https://github.com/okamos/dotfiles/tarball/master"
-REMOTE_URL="git@github.com:okamos/dotfiles.git"
+DOT_TARBALL="https://github.com/kurarrr/dotfiles/tarball/master"
+REMOTE_URL="git@github.com:kurarrr/dotfiles.git"
 
 has() {
   type "$1" > /dev/null 2>&1
