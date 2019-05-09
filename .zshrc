@@ -72,9 +72,9 @@ setopt hist_reduce_blanks
 bindkey -v
             
 # zsh-completionsの設定
-fpath=(/path/to/homebrew/share/zsh-completions $fpath)
-autoload -U compinit
-compinit -u
+# fpath=(/path/to/homebrew/share/zsh-completions $fpath)
+# autoload -U compinit
+# compinit -u
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
