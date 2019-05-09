@@ -1,0 +1,86 @@
+{
+/*
+	// Place your snippets for C++ here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+*/
+	"output to console":{
+		"prefix":"cout",
+		"body": "cout << \"$1\" << endl;"
+	},
+	"input":{
+		"prefix":"cin",
+		"body":"cin >> $1 ;"
+	},
+	"lg2floor":{
+		"prefix":"lg2floor",
+		"body":"long long lg2floor(long long n) { n |= n >> 32; n |= n >> 16; n |= n >> 8; n |= n >> 4; n |= n >> 2; n |= n >> 1; return __builtin_popcount(n)-1;}"
+	},
+	"pow2ceil":{
+		"prefix":"pow2ceil",
+		"body":"long long pow2ceil(long long n) { --n; n |= n >> 32; n |= n >> 16; n |= n >> 8; n |= n >> 4; n |= n >> 2; n |= n >> 1; return n + 1;}"
+	}
+	,
+	"modint":{
+		"prefix":"modint",
+		"body":[
+			"template<int MOD> struct ModInt {",
+		"  static const int Mod = MOD; unsigned x; ModInt() : x(0) { }",
+		"  ModInt(signed sig) { x = sig < 0 ? sig % MOD + MOD : sig % MOD; }",
+		"  ModInt(signed long long sig) { x = sig < 0 ? sig % MOD + MOD : sig % MOD; }",
+		"  int get() const { return (int)x; }",
+		"  ModInt &operator+=(ModInt that) { if ((x += that.x) >= MOD) x -= MOD; return *this; }",
+		"  ModInt &operator-=(ModInt that) { if ((x += MOD - that.x) >= MOD) x -= MOD; return *this; }",
+		"  ModInt &operator*=(ModInt that) { x = (unsigned long long)x * that.x % MOD; return *this; }",
+		"  ModInt &operator/=(ModInt that) { return *this *= that.inverse(); }",
+		"  ModInt operator+(ModInt that) const { return ModInt(*this) += that; }",
+		"  ModInt operator-(ModInt that) const { return ModInt(*this) -= that; }",
+		"  ModInt operator*(ModInt that) const { return ModInt(*this) *= that; }",
+		"  ModInt operator/(ModInt that) const { return ModInt(*this) /= that; }",
+		"  ModInt inverse() const { long long a = x, b = MOD, u = 1, v = 0;",
+		"      while (b) { long long t = a / b; a -= t * b; std::swap(a, b); u -= t * v; std::swap(u, v); }",
+		"      return ModInt(u); }",
+		"  bool operator==(ModInt that) const { return x == that.x; }",
+		"  bool operator!=(ModInt that) const { return x != that.x; }",
+		"  ModInt operator-() const { ModInt t; t.x = x == 0 ? 0 : Mod - x; return t; }",
+		"};",
+		"template<int MOD> ostream& operator<<(ostream& st, const ModInt<MOD> a) { st << a.get(); return st; };",
+		"template<int MOD> ModInt<MOD> operator^(ModInt<MOD> a, unsigned long long k) {",
+		"  ModInt<MOD> r = 1; while (k) { if (k & 1) r *= a; a *= a; k >>= 1; } return r; }",
+		"template<typename T, int FAC_MAX> struct Comb { vector<T> fac, ifac;",
+		"  Comb(){fac.resize(FAC_MAX,1);ifac.resize(FAC_MAX,1); for(int i = 1; i < FAC_MAX; i++)fac[i]=fac[i-1]*i;",
+		"    ifac[FAC_MAX-1]=T(1)/fac[FAC_MAX-1];for(int i = FAC_MAX-2; i >= 1; i--)ifac[i]=ifac[i+1]*T(i+1);}",
+		"    T aPb(int a, int b) { if (b < 0 || a < b) return T(0); return fac[a] * ifac[a - b]; }",
+		"    T aCb(int a, int b) { if (b < 0 || a < b) return T(0); return fac[a] * ifac[a - b] * ifac[b]; }",
+		"    T nHk(int n, int k) { if (n == 0 && k == 0) return T(1); if (n <= 0 || k < 0) return 0;",
+		"    return aCb(n + k - 1, k); }}; // nHk = (n+k-1)Ck : n is separator",
+		"",
+		"using mint =  ModInt<int(1e9+7)>;",
+		"using vm =  vector<mint>;"
+		]
+	},
+	"for loop 2":{
+		"prefix":"forj",
+		"body":[
+			"for (int j=0; j<$1; j++) $2"
+		]
+	},
+	
+	"for loop 3":{
+		"prefix":"fork",
+		"body":[
+			"for (int k=0; k<$1; k++) $2"
+		]
+	},
+
+}

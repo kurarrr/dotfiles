@@ -71,6 +71,15 @@ link_files() {
     fi
   done
 
+  # vscode setting
+  rm ${HOME}/Library/Application\ Support/Code/User/settings.json
+  rm ${HOME}/Library/Application\ Support/Code/User/keybindings.json
+  rm -rf ${HOME}/Library/Application\ Support/Code/User/snippets 
+  ln -snfv ${DOT_DIRECTORY}/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
+  ln -snfv ${DOT_DIRECTORY}/keybindings.json ${HOME}/Library/Application\ Support/Code/User/keybindings.json
+  ln -snfv ${DOT_DIRECTORY}/snippets ${HOME}/Library/Application\ Support/Code/User/snippets
+
+
   echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 }
 
