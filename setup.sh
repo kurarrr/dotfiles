@@ -93,14 +93,9 @@ initialize() {
           echo
       fi
       brew bundle
-      echo
-      mac_configure
-      ;;
-    linux-gnu)
-      # nope
       ;;
     *)
-      echo $(tput setaf 1)Working only OSX / Ubuntu!!$(tput sgr0)
+      echo $(tput setaf 1)Working only OSX!!$(tput sgr0)
       exit 1
       ;;
   esac

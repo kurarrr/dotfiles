@@ -1,0 +1,15 @@
+[codestyle]
+indent_type='space' # 'tab' or 'space'
+indent_width=2
+template_file='~/contests/cpp/template/atcodertools.cpp.template'
+workspace_dir='~/contests/atcoder-workspace/'
+lang='cpp' # 'cpp' or 'java' (Currently)
+# code_generator_file="~/custom_code_generator.py"
+[postprocess]
+# exec_on_each_problem_dir='clang-format -i ./*.cpp'
+# exec_on_contest_dir='touch CMakeLists.txt'
+
+[etc]
+download_without_login=false
+parallel_download=false
+save_no_session_cache=false
