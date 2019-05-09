@@ -1,3 +1,8 @@
+alias atc='atcoder-tools'
+alias tes='g++ main.cpp && atc test'
+alias sub='g++ main.cpp && atc submit'
+alias dcp='docker-compose'
+
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/sbin"
