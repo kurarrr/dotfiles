@@ -1,7 +1,7 @@
 {
   "runner.languageMap": {
-        "c": "/Users/ryota/dotfiles/vscode/VisualCodeRunner/crun_gcc.sh",
-        "cpp": "/Users/ryota/dotfiles/vscode/VisualCodeRunner/cpprun.sh"
+        "c": "/Users/kurarrr/dotfiles/vscode/VisualCodeRunner/crun_gcc.sh",
+        "cpp": "/Users/kurarrr/dotfiles/vscode/VisualCodeRunner/cpprun.sh"
     },
     "window.zoomLevel": 0,
     "editor.renderWhitespace": "all",

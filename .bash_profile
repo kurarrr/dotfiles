@@ -14,10 +14,10 @@ export LDFLAGS=-L/usr/local/opt/imagemagick@6/lib
 
 export CPPFLAGS=-I/usr/local/opt/imagemagick@6/include
 export PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/Users/ryota/.csrc
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/Users/kurarrr/.csrc
 
 #if [ -f ~/.bashrc ] ; then
 #. ~/.bashrc
 #fi
 
-[[ -s "/Users/ryota/.gvm/scripts/gvm" ]] && source "/Users/ryota/.gvm/scripts/gvm"
+[[ -s "/Users/kurarrr/.gvm/scripts/gvm" ]] && source "/Users/kurarrr/.gvm/scripts/gvm"

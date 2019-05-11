@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/ryota/.gitignore_global
+	excludesfile = /Users/kurarrr/.gitignore_global
 [user]
 	name = kurarrr
 	email = reverse.engau@gmail.com
@@ -9,5 +9,3 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-[commit]
-	template = /Users/ryota/.stCommitMsg

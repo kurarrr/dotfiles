@@ -18,9 +18,9 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 
 # if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/Users/ryota/.csrc
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/Users/kurarrr/.csrc
 
-export ZSH=/Users/ryota/.oh-my-zsh
+export ZSH=/Users/kurarrr/.oh-my-zsh
 ZSH_THEME="candy"
 
 plugins=(
@@ -97,4 +97,4 @@ bindkey -v
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[[ -s "/Users/ryota/.gvm/scripts/gvm" ]] && source "/Users/ryota/.gvm/scripts/gvm"
+[[ -s "/Users/kurarrr/.gvm/scripts/gvm" ]] && source "/Users/kurarrr/.gvm/scripts/gvm"
