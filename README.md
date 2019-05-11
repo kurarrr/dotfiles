@@ -18,5 +18,6 @@ bash -c "$(curl -fsSL raw.github.com/kurarrr/dotfiles/master/setup.sh)"
 
 ## TODO
 
+- vscode setting
 - settings of anyenv
 - brew install by mas 
