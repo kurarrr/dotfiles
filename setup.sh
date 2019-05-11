@@ -119,6 +119,9 @@ app_settings() {
   ln -snfv ${DOT_DIRECTORY}/vscode/keybindings.json ${HOME}/Library/Application\ Support/Code/User/keybindings.json
   ln -snfv ${DOT_DIRECTORY}/vscode/snippets ${HOME}/Library/Application\ Support/Code/User/snippets
 
+  # gcc
+  ln -s /usr/local/bin/gcc-9 /usr/local/bin/gcc
+  ln -s /usr/local/bin/g++-9 /usr/local/bin/g++
 }
 
 command=$1
