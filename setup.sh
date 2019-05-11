@@ -70,7 +70,7 @@ link_files() {
       ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
     fi
   done
-
+ 
   echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 }
 
@@ -84,20 +84,12 @@ initialize() {
           echo
       fi
       brew bundle
-      echo
-      mac_configure
-      ;;
-    linux-gnu)
-      # nope
       ;;
     *)
-      echo $(tput setaf 1)Working only OSX / Ubuntu!!$(tput sgr0)
+      echo $(tput setaf 1)Working only OSX!!$(tput sgr0)
       exit 1
       ;;
   esac
-
-  # use zsh as default
-  [ ${SHELL} != "/bin/zsh"  ] && chsh -s /bin/zsh
 
   # use aneynv ? 
   # if [ ! -d ${HOME}/.anyenv ]; then
@@ -113,12 +105,33 @@ initialize() {
   echo "$(tput setaf 2)Initialize complete!. ✔︎$(tput sgr0)"
 }
 
+app_settings() {
+  # use zsh as default
+  # after installing zsh
+  sudo sh -c "echo `which zsh` >> /etc/shells"
+  chsh -s '`which zsh`'
+
+  # vscode setting
+  # rm ${HOME}/Library/Application\ Support/Code/User/settings.json
+  # rm ${HOME}/Library/Application\ Support/Code/User/keybindings.json
+  # rm -rf ${HOME}/Library/Application\ Support/Code/User/snippets 
+  ln -snfv ${DOT_DIRECTORY}/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
+  ln -snfv ${DOT_DIRECTORY}/keybindings.json ${HOME}/Library/Application\ Support/Code/User/keybindings.json
+  ln -snfv ${DOT_DIRECTORY}/snippets ${HOME}/Library/Application\ Support/Code/User/snippets
+
+}
+
 command=$1
 [ $# -gt 0 ] && shift
 
 case $command in
+  link_files)
+    link_files
+    ;;
   deploy)
     link_files
+    mac_configure
+    app_settings
     ;;
   init*)
     initialize
