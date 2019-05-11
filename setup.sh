@@ -70,11 +70,11 @@ link_files() {
       ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
     fi
   done
-
+ 
   # vscode setting
-  rm ${HOME}/Library/Application\ Support/Code/User/settings.json
-  rm ${HOME}/Library/Application\ Support/Code/User/keybindings.json
-  rm -rf ${HOME}/Library/Application\ Support/Code/User/snippets 
+  # rm ${HOME}/Library/Application\ Support/Code/User/settings.json
+  # rm ${HOME}/Library/Application\ Support/Code/User/keybindings.json
+  # rm -rf ${HOME}/Library/Application\ Support/Code/User/snippets 
   ln -snfv ${DOT_DIRECTORY}/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
   ln -snfv ${DOT_DIRECTORY}/keybindings.json ${HOME}/Library/Application\ Support/Code/User/keybindings.json
   ln -snfv ${DOT_DIRECTORY}/snippets ${HOME}/Library/Application\ Support/Code/User/snippets
@@ -101,7 +101,8 @@ initialize() {
   esac
 
   # use zsh as default
-  [ ${SHELL} != "/bin/zsh"  ] && chsh -s /bin/zsh
+  sudo sh -c "echo `which zsh` >> /etc/shells"
+  chsh -s '`which zsh`'
 
   # use aneynv ? 
   # if [ ! -d ${HOME}/.anyenv ]; then
@@ -123,6 +124,7 @@ command=$1
 case $command in
   deploy)
     link_files
+    mac_configure
     ;;
   init*)
     initialize
