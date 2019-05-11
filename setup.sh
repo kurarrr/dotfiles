@@ -70,7 +70,7 @@ link_files() {
       ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
     fi
   done
- 
+
   echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 }
 

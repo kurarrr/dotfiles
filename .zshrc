@@ -10,7 +10,7 @@ export PATH="$PATH:/sbin"
 export PYENV_ROOT="$HOME/.pyenv"                                                           
 export PATH="$PYENV_ROOT/bin:$PATH"
 
-# eval "$(pyenv init -)"
+eval "$(pyenv init -)"
 
 export NODE_PATH=/usr/local/lib/node_modules
 export PATH="/Library/TeX/texbin:$PATH"
