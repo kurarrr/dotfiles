@@ -105,12 +105,7 @@ initialize() {
   echo "$(tput setaf 2)Initialize complete!. ✔︎$(tput sgr0)"
 }
 
-app_settings() {
-  # use zsh as default
-  # after installing zsh
-  sudo sh -c "echo `which zsh` >> /etc/shells"
-  chsh -s '`which zsh`'
-
+vscode_settings() {
   # vscode setting
   # rm ${HOME}/Library/Application\ Support/Code/User/settings.json
   # rm ${HOME}/Library/Application\ Support/Code/User/keybindings.json
@@ -118,6 +113,15 @@ app_settings() {
   ln -snfv ${DOT_DIRECTORY}/vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
   ln -snfv ${DOT_DIRECTORY}/vscode/keybindings.json ${HOME}/Library/Application\ Support/Code/User/keybindings.json
   ln -snfv ${DOT_DIRECTORY}/vscode/snippets ${HOME}/Library/Application\ Support/Code/User/snippets
+}
+
+app_settings() {
+  # use zsh as default
+  # after installing zsh
+  sudo sh -c "echo `which zsh` >> /etc/shells"
+  chsh -s '`which zsh`'
+
+  vscode_settings
 
   # gcc
   ln -s /usr/local/bin/gcc-9 /usr/local/bin/gcc
@@ -135,6 +139,9 @@ case $command in
     link_files
     mac_configure
     app_settings
+    ;;
+  vscode_settings)
+    vscode_settings
     ;;
   init*)
     initialize

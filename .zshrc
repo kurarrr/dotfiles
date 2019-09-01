@@ -2,6 +2,9 @@ alias atc='atcoder-tools'
 alias tes='g++ main.cpp && atc test'
 alias sub='g++ main.cpp && atc submit'
 alias dcp='docker-compose'
+alias tunnel-on='sudo networksetup -setsocksfirewallproxystate Wi-Fi on && ssh tunnel -N'
+alias tunnel-off='sudo networksetup -setsocksfirewallproxystate Wi-Fi off'
+alias pa='php artisan'
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$PATH:/usr/sbin"
@@ -10,22 +13,31 @@ export PATH="$PATH:/sbin"
 export PYENV_ROOT="$HOME/.pyenv"                                                           
 export PATH="$PYENV_ROOT/bin:$PATH"
 
+export NODENV_ROOT="$HOME/.nodenv"
+export PATH="$NODENV_ROOT/bin:$PATH"
+
 eval "$(pyenv init -)"
+eval "$(rbenv init -)"
+eval "$(nodenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-export NODE_PATH=/usr/local/lib/node_modules
+# for php composer
+export PATH="$PATH:$HOME/.composer/vendor/bin"
+
+# export NODE_PATH=/usr/local/lib/node_modules
 export PATH="/Library/TeX/texbin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 
 # if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/Users/kurarrr/.csrc
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/local/Cellar/boost/1.70.0/include
 
 export ZSH=/Users/kurarrr/.oh-my-zsh
 ZSH_THEME="candy"
 
 plugins=(
-  git brew brew-cask cdd gem rbenv pyenv
+  git brew gem rbenv pyenv
 )
 
 source $ZSH/oh-my-zsh.sh

@@ -4,7 +4,7 @@
         "cpp": "/Users/kurarrr/dotfiles/vscode/VisualCodeRunner/cpprun.sh"
     },
     "window.zoomLevel": 0,
-    "editor.renderWhitespace": "all",
+    "editor.renderWhitespace": "boundary",
     "python.linting.pylintEnabled": false,
     "editor.tabSize": 2,
     "latex-workshop.latex.recipes": [
@@ -85,6 +85,8 @@
         "*.json": "json"
     },
     "emmet.triggerExpansionOnTab": true,
-    "vetur.experimental.templateInterpolationService": false
+    "vetur.experimental.templateInterpolationService": false,
+    "explorer.confirmDragAndDrop": false,
+    "C_Cpp.updateChannel": "Insiders"
 }
 

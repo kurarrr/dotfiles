@@ -15,7 +15,7 @@ tempfile=`date '+%m%d%H%M%S'`
 #-------------------------------
 # コンパイル実行
 #-------------------------------
-g++ -fsanitize=address -D DEBUG_IS_VALID -std=c++14 -o $tempfile $1
+g++ -fsanitize=undefined -fvisibility=hidden -D DEBUG_IS_VALID -std=c++14 -o $tempfile $1
 
 #-------------------------------
 # 実行
