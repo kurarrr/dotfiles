@@ -2,7 +2,10 @@
 	excludesfile = /Users/kurarrr/.gitignore_global
 [user]
 	name = kurarrr
-	email = reverse.engau@gmail.com
+	email = y.kurarrr@gmail.com
+[alias]
+	c = checkout
+	b = branch
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
