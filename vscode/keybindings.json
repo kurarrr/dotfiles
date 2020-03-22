@@ -1,7 +1,7 @@
 // 既定値を上書きするには、このファイル内にキー バインドを挿入します
 [
   { "key": "shift+cmd+.",  "command": "extension.runner.stop" },
-  { "key": "cmd+h",           "command": "editor.action.deleteLines",
+  { "key": "cmd+g",           "command": "editor.action.deleteLines",
                                     "when": "editorTextFocus && !editorReadonly"
                                   },
                                   {

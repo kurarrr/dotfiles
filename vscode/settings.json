@@ -87,6 +87,10 @@
     "emmet.triggerExpansionOnTab": true,
     "vetur.experimental.templateInterpolationService": false,
     "explorer.confirmDragAndDrop": false,
-    "C_Cpp.updateChannel": "Insiders"
+    "C_Cpp.updateChannel": "Insiders",
+    "terminal.integrated.rendererType": "dom",
+    "workbench.editor.enablePreview": false,
+    "restructuredtext.linter.disabled": true,
+    "restructuredtext.linter.run": "off"
 }
 
