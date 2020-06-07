@@ -91,6 +91,7 @@
     "terminal.integrated.rendererType": "dom",
     "workbench.editor.enablePreview": false,
     "restructuredtext.linter.disabled": true,
-    "restructuredtext.linter.run": "off"
+    "restructuredtext.linter.run": "off",
+    "colorize.languages": ["typescript", "typescriptreact", "css", "scss"]
 }
 
