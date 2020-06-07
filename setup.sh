@@ -16,8 +16,10 @@ usage() {
 Usage:
   $name [arguments] [command]
 Commands:
+  link_files
   deploy
-  initialize
+  init
+  vscode_settings
 Arguments:
   -f $(tput setaf 1)** warning **$(tput sgr0) Overwrite dotfiles.
   -h Print help (this message)
