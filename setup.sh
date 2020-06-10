@@ -86,23 +86,14 @@ initialize() {
           echo
       fi
       brew bundle
+      # Install oh-my-zsh
+      sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
       ;;
     *)
       echo $(tput setaf 1)Working only OSX!!$(tput sgr0)
       exit 1
       ;;
   esac
-
-  # use aneynv ? 
-  # if [ ! -d ${HOME}/.anyenv ]; then
-  #   git clone https://github.com/riywo/anyenv ~/.anyenv
-  #   anyenv install goenv
-  #   anyenv install rbenv
-  #   anyenv install pyenv
-  #   anyenv install phpenv
-  #   anyenv install ndenv
-  #   exec $SHELL -l
-  # fi
 
   echo "$(tput setaf 2)Initialize complete!. ✔︎$(tput sgr0)"
 }
