@@ -1,15 +1,13 @@
-alias atc='atcoder-tools'
-alias tes='g++ main.cpp && atc test'
-alias sub='g++ main.cpp && atc submit'
-alias dcp='docker-compose'
-alias dcs='docker-sync'
-alias tunnel-on='sudo networksetup -setsocksfirewallproxystate Wi-Fi on && ssh tunnel -N'
-alias tunnel-off='sudo networksetup -setsocksfirewallproxystate Wi-Fi off'
+alias atc="atcoder-tools"
+alias tes="g++ main.cpp && atc test"
+alias sub="g++ main.cpp && atc submit"
+alias dcp="docker-compose"
+alias dcs="docker-sync"
+alias zshconf="vim $HOME/.zshrc"
 eval $(thefuck --alias)
 
-export PATH="$PATH:$HOME/bin:/usr/local/bin:/usr/bin:/sbin"
-
-export PATH=$PATH:`npm bin -g`
+export PATH="$PATH:$HOME/bin:/usr/local/bin:/usr/bin:/sbin:/opt/local/bin/"
+export PATH="$PATH:$(npm bin -g)"
 
 export PATH="$PATH:$HOME/.pyenv/bin"
 eval "$(pyenv init -)"
@@ -23,23 +21,22 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
-# for php composer
-export PATH="$PATH:$HOME/.composer/vendor/bin"
+export PATH="$HOME/.poetry/bin:$PATH"
 
-[[ -s "/Users/kurarrr/.gvm/scripts/gvm" ]] && source "/Users/kurarrr/.gvm/scripts/gvm"
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 export PATH="$PATH:$HOME/flutter/bin"
-
-export PATH="/Library/TeX/texbin:$PATH"
-
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/Users/kurarrr/.csrc
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/local/Cellar/boost/1.70.0/include
+export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:$HOME/.csrc:/usr/local/Cellar/boost/1.70.0/include"
 
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
 export CPPFLAGS="-I/usr/local/opt/openblas/include"
 
+# For mount command in docker
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
+
 bindkey "^R" history-incremental-pattern-search-backward
-export ZSH=/Users/kurarrr/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="candy"
 
 plugins=(
@@ -87,7 +84,7 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 
 bindkey -v
-bindkey '^R' history-incremental-search-backward
+bindkey "^R" history-incremental-search-backward
 
 # zsh-completionsの設定
 # fpath=(/path/to/homebrew/share/zsh-completions $fpath)
@@ -96,15 +93,10 @@ bindkey '^R' history-incremental-search-backward
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+#   export EDITOR="vim"
 # else
-#   export EDITOR='mvim'
+#   export EDITOR="mvim"
 # fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -112,6 +104,12 @@ bindkey '^R' history-incremental-search-backward
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+export GOOGLE_APPLICATION_CREDENTIALS="$HOME/gcp_credentials/food-dx-dev-8ee0a01b11c7.json"
 
