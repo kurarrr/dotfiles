@@ -46,18 +46,21 @@ if [ ! -d ${DOT_DIRECTORY} ]; then
 
   if has "git"; then
     git clone --recursive "${REMOTE_URL}" "${DOT_DIRECTORY}"
-  else
+  elif has "curl"; then
     curl -fsSLo ${HOME}/dotfiles.tar.gz ${DOT_TARBALL}
     tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOT_DIRECTORY}
     rm -f ${HOME}/dotfiles.tar.gz
+  else
+      die "git or curl required"
   fi
-
   echo $(tput setaf 2)Download dotfiles complete!. ✔︎$(tput sgr0)
 fi
 
 cd ${DOT_DIRECTORY}
 
-source ./lib/configure
+mac_configure(){
+  source ./lib/configure
+}
 
 link_files() {
   # add symbolic link
@@ -77,32 +80,20 @@ link_files() {
 }
 
 initialize() {
-  case ${OSTYPE} in
-    darwin*)
-      # install homebrew
-      if ! command -v brew > /dev/null 2>&1; then
-          # Install homebrew: https://brew.sh/
-          /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-          echo
-      fi
-      brew bundle
-      # Install oh-my-zsh
-      sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-      ;;
-    *)
-      echo $(tput setaf 1)Working only OSX!!$(tput sgr0)
-      exit 1
-      ;;
-  esac
-
+  # install homebrew
+  if ! command -v brew > /dev/null 2>&1; then
+      # Install homebrew: https://brew.sh/
+      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      echo
+  fi
+  echo "$(tput setaf 2)Install homebrew complete!. ✔︎$(tput sgr0)"
+  brew bundle
+  ;;
   echo "$(tput setaf 2)Initialize complete!. ✔︎$(tput sgr0)"
 }
 
 vscode_settings() {
   # vscode setting
-  # rm ${HOME}/Library/Application\ Support/Code/User/settings.json
-  # rm ${HOME}/Library/Application\ Support/Code/User/keybindings.json
-  # rm -rf ${HOME}/Library/Application\ Support/Code/User/snippets 
   ln -snfv ${DOT_DIRECTORY}/vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
   ln -snfv ${DOT_DIRECTORY}/vscode/keybindings.json ${HOME}/Library/Application\ Support/Code/User/keybindings.json
   ln -snfv ${DOT_DIRECTORY}/vscode/snippets ${HOME}/Library/Application\ Support/Code/User/snippets
@@ -114,8 +105,12 @@ app_settings() {
   sudo sh -c "echo `which zsh` >> /etc/shells"
   chsh -s '`which zsh`'
 
-  vscode_settings
+  # Install oh-my-zsh
+  sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+  # vscode
+  vscode_settings
+  
   # gcc
   ln -s /usr/local/bin/gcc-9 /usr/local/bin/gcc
   ln -s /usr/local/bin/g++-9 /usr/local/bin/g++
