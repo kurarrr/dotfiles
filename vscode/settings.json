@@ -7,26 +7,6 @@
     "editor.renderWhitespace": "boundary",
     "python.linting.pylintEnabled": false,
     "editor.tabSize": 2,
-    "latex-workshop.latex.recipes": [
-      {
-          "name": "ptex2pdf",
-          "tools": [
-              "ptex2pdf"
-          ]
-      }
-    ],
-    "latex-workshop.latex.tools": [
-      {
-          "name": "ptex2pdf",
-          "command": "ptex2pdf",
-          "args": [
-              "-l",
-              "-ot",
-              "-kanji=utf8 -synctex=1",
-              "%DOC%"
-          ]
-      }
-    ],
     "java.errors.incompleteClasspath.severity": "ignore",
     "editor.suggestOnTriggerCharacters": false,
     "editor.acceptSuggestionOnCommitCharacter": false,
@@ -82,7 +62,8 @@
         "nim": "nim compile --verbosity:0 --hints:off --run"
     },
     "files.associations": {
-        "*.json": "json"
+        "*.json": "json",
+        "*.jb": "ruby"
     },
     "emmet.triggerExpansionOnTab": true,
     "vetur.experimental.templateInterpolationService": false,
@@ -92,6 +73,12 @@
     "workbench.editor.enablePreview": false,
     "restructuredtext.linter.disabled": true,
     "restructuredtext.linter.run": "off",
-    "colorize.languages": ["typescript", "typescriptreact", "css", "scss"]
+    "colorize.languages": [
+        "typescript",
+        "typescriptreact",
+        "css",
+        "scss"
+    ],
+    "workbench.editor.centeredLayoutAutoResize": false
 }
 
