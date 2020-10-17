@@ -44,9 +44,7 @@ if [ ! -d ${DOT_DIRECTORY} ]; then
   echo "Downloading dotfiles..."
   mkdir ${DOT_DIRECTORY}
 
-  if has "git"; then
-    git clone --recursive "${REMOTE_URL}" "${DOT_DIRECTORY}"
-  elif has "curl"; then
+  if has "curl"; then
     curl -fsSLo ${HOME}/dotfiles.tar.gz ${DOT_TARBALL}
     tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOT_DIRECTORY}
     rm -f ${HOME}/dotfiles.tar.gz
