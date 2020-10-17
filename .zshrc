@@ -4,30 +4,28 @@ alias sub="g++ main.cpp && atc submit"
 alias dcp="docker-compose"
 alias dcs="docker-sync"
 alias zshconf="vim $HOME/.zshrc"
+alias zshrel="source $HOME/.zshrc"
 eval $(thefuck --alias)
 
-export PATH="$PATH:$HOME/bin:/usr/local/bin:/usr/bin:/sbin:/opt/local/bin/"
-export PATH="$PATH:$(npm bin -g)"
+export PATH="$PATH:$HOME/bin:/usr/local/bin:/usr/bin:/sbin:/opt/local/bin/\
+:$(npm bin -g)\
+:$HOME/.pyenv/bin\
+:$HOME/.nodenv/bin\
+:$HOME/.rbenv/bin\
+:$HOME/.poetry/bin
+:$HOME/flutter/bin
+"
 
-export PATH="$PATH:$HOME/.pyenv/bin"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-
-export NODENV_ROOT="$HOME/.nodenv"
-export PATH="$NODENV_ROOT/bin:$PATH"
 eval "$(nodenv init -)"
-
-export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
-export PATH="$HOME/.poetry/bin:$PATH"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
-export PATH="$PATH:$HOME/flutter/bin"
 export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:$HOME/.csrc:/usr/local/Cellar/boost/1.70.0/include"
-
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
 export CPPFLAGS="-I/usr/local/opt/openblas/include"
 
@@ -112,4 +110,3 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 export GOOGLE_APPLICATION_CREDENTIALS="$HOME/gcp_credentials/food-dx-dev-8ee0a01b11c7.json"
-
