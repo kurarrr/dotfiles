@@ -5,7 +5,6 @@ alias dcp="docker-compose"
 alias dcs="docker-sync"
 alias zshconf="vim $HOME/.zshrc"
 alias zshrel="source $HOME/.zshrc"
-eval $(thefuck --alias)
 
 export PATH="$PATH:$HOME/bin:/usr/local/bin:/usr/bin:/sbin:/opt/local/bin/\
 :$(npm bin -g)\
@@ -108,3 +107,10 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+eval "$(direnv hook zsh)"
+
+function ghql(){
+  local src=$(ghq list | fzf --preview "ls -laTp $(ghq root)/{} | tail -n+4 | awk '{print \$9\"/\"\$6\"/\"\$7 \" \" \$10}'")
+  cd $(ghq root)/$src
+}
