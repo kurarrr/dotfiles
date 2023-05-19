@@ -1,26 +1,59 @@
 alias atc="atcoder-tools"
 alias tes="g++ main.cpp && atc test"
 alias sub="g++ main.cpp && atc submit"
-alias dcp="docker-compose"
+alias dcp="docker compose"
 alias dcs="docker-sync"
 alias zshconf="vim $HOME/.zshrc"
 alias zshrel="source $HOME/.zshrc"
+#alias date="gdate"
+alias g++="/usr/local/bin/g++-11"
+alias k="kubectl"
+alias kd="kubectl describe"
+alias gcurl='curl --header "Authorization: Bearer $(gcloud auth print-identity-token)"'
+alias jqless='jq '.' -C | less -R'
+
+export GOPATH="$HOME/go"
 
 export PATH="$PATH:$HOME/bin:/usr/local/bin:/usr/bin:/sbin:/opt/local/bin/\
-:$(npm bin -g)\
 :$HOME/.pyenv/bin\
-:$HOME/.nodenv/bin\
-:$HOME/.rbenv/bin\
-:$HOME/.poetry/bin
-:$HOME/flutter/bin
+:$HOME/.poetry/bin\
+:$GOPATH/bin\
 "
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(nodenv init -)"
-eval "$(rbenv init -)"
+# Use gsed, gawk, gfind, core utils as default
+PATH="/usr/local/opt/coreutils/libexec/gnubin\
+:/usr/local/opt/gnu-sed/libexec/gnubin\
+:/usr/local/opt/gawk/libexec/gnubin/
+:/usr/local/opt/findutils/libexec/gnubin\
+:/usr/local/opt/grep/libexec/gnubin\
+:$PATH"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman\
+:/usr/local/opt/gnu-sed/libexec/gnuman\
+:/usr/local/opt/gawk/libexec/gnuman\
+:/usr/local/opt/findutils/libexec/gnuman\
+:/usr/local/opt/grep/libexec/gnuman\
+:$MANPATH"
 
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+function current_gcp_project() {
+  if [[ -n $CLOUDSDK_ACTIVE_CONFIG_NAME ]]; then
+    echo ${CLOUDSDK_ACTIVE_CONFIG_NAME}
+  fi
+}
+
+PROMPT=$(
+  cat <<EOL
+%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%D{[%X]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} %{$fg[red]%}[hoge] %{$reset_color%}
+%{$fg[blue]%}->%{$fg_bold[blue]%} %#%{$reset_color%} 
+EOL
+)
+
+export LESS='-g -i -M -R -W -z-4 -x4'
+
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
@@ -32,18 +65,24 @@ export CPPFLAGS="-I/usr/local/opt/openblas/include"
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 
-bindkey "^R" history-incremental-pattern-search-backward
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="candy"
+export ZSH_THEME="candy"
 
 plugins=(
-  git brew gem rbenv pyenv
+  git brew gem pyenv kubectl gcloud
 )
 
 source $ZSH/oh-my-zsh.sh
+source <(kubectl completion zsh)
 
 # You may need to manually set your language environment
 export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
 
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
@@ -56,9 +95,6 @@ setopt no_beep
 
 # ビープ音の停止(補完時)
 setopt nolistbeep
-
-# cd -<tab>で以前移動したディレクトリを表示
-setopt auto_pushd
 
 # ヒストリ(履歴)を保存、数を増やす
 HISTFILE=~/.zsh_history
@@ -80,14 +116,6 @@ setopt hist_ignore_space
 # ヒストリに保存するときに余分なスペースを削除する
 setopt hist_reduce_blanks
 
-bindkey -v
-bindkey "^R" history-incremental-search-backward
-
-# zsh-completionsの設定
-# fpath=(/path/to/homebrew/share/zsh-completions $fpath)
-# autoload -U compinit
-# compinit -u
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR="vim"
@@ -95,22 +123,44 @@ else
   export EDITOR="vim"
 fi
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
-
 eval "$(direnv hook zsh)"
 
-function ghql(){
-  local src=$(ghq list | fzf --preview "ls -laTp $(ghq root)/{} | tail -n+4 | awk '{print \$9\"/\"\$6\"/\"\$7 \" \" \$10}'")
+plugins=(git docker docker-compose gcloud kubectl)
+
+source $ZSH/oh-my-zsh.sh
+
+gcsavro() {
+  for f in $(gsutil ls $1); do
+    gsutil cat "$f" | avro-tools tojson - | jq
+  done
+}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. $(brew --prefix)/etc/profile.d/z.sh
+fzf-z-search() {
+  local res=$(z | sort -rn | cut -c 12- | fzf)
+  if [ -n "$res" ]; then
+    BUFFER+="cd $res"
+    zle accept-line
+  else
+    return 1
+  fi
+}
+
+zle -N fzf-z-search
+bindkey '^f' fzf-z-search
+
+function ghql() {
+  local src=$(ghq list | fzf --preview "/bin/ls -laTp $(ghq root)/{} | tail -n+4 | awk '{print \$9\"/\"\$6\"/\"\$7 \" \" \$10}'")
   cd $(ghq root)/$src
 }
+
+function gitc() {
+  local branches branch
+  branches=$(git branch | sed -e 's/\(^\* \|^  \)//g' | cut -d " " -f 1) &&
+    branch=$(echo "$branches" | fzf --preview "git log --graph --full-history --color --first-parent {}") &&
+    git checkout $(echo "$branch")
+}
+
+export GIT_COMPLETION_CHECKOUT_NO_GUESS=1

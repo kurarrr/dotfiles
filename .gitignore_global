@@ -5,3 +5,7 @@ __pycache__
 bower_components
 /vendor/bundle
 .vscode
+.venv
+.envrc
+.flake8
+**/debug_workspace/**

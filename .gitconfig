@@ -1,14 +1,25 @@
 [core]
-	excludesfile = /Users/kurarrr/.gitignore_global
+  excludesfile = ${HOME}/.gitignore_global
 [user]
-	name = kurarrr
-	email = y.kurarrr@gmail.com
+  email = reverse.engau@gmail.com
+  name = kurarrr
 [alias]
-	c = checkout
-	b = branch
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  c = checkout
+  ch = !git branch -a | fzf | xargs git checkout
+  b = branch
+  s = switch
+  wip = "commit --allow-empty -m '[ci skip] wip commit'"
+  delete-merged-branch = "!f () { git c $1; git branch --merged | egrep -v '\\*|master|develop|main' | xargs git branch -d; }; f"
+  root = cd $(git rev-parse --show-toplevel)
+[fetch]
+  prune = true
+[ghq]
+  root = ~/src
+[init]
+  defaultBranch = main
+[pull]
+  ff = only
+[push]
+  autoSetupRemote = true
+[diff]
+  algorithm = histogram
