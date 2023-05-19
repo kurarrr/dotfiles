@@ -19,7 +19,6 @@ Commands:
   link_files
   deploy
   init
-  vscode_settings
 Arguments:
   -f $(tput setaf 1)** warning **$(tput sgr0) Overwrite dotfiles.
   -h Print help (this message)
@@ -90,13 +89,6 @@ initialize() {
   echo "$(tput setaf 2)Initialize complete!. ✔︎$(tput sgr0)"
 }
 
-vscode_settings() {
-  # vscode setting
-  ln -snfv ${DOT_DIRECTORY}/vscode/settings.json ${HOME}/Library/Application\ Support/Code/User/settings.json
-  ln -snfv ${DOT_DIRECTORY}/vscode/keybindings.json ${HOME}/Library/Application\ Support/Code/User/keybindings.json
-  ln -snfv ${DOT_DIRECTORY}/vscode/snippets ${HOME}/Library/Application\ Support/Code/User/snippets
-}
-
 app_settings() {
   # use zsh as default
   # after installing zsh
@@ -106,9 +98,6 @@ app_settings() {
   # Install oh-my-zsh
   sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-  # vscode
-  vscode_settings
-  
   # gcc
   ln -s /usr/local/bin/gcc-9 /usr/local/bin/gcc
   ln -s /usr/local/bin/g++-9 /usr/local/bin/g++
@@ -125,9 +114,6 @@ case $command in
     link_files
     mac_configure
     app_settings
-    ;;
-  vscode_settings)
-    vscode_settings
     ;;
   init*)
     initialize
