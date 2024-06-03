@@ -1,14 +1,10 @@
-alias atc="atcoder-tools"
-alias tes="g++ main.cpp && atc test"
-alias sub="g++ main.cpp && atc submit"
 alias dcp="docker compose"
-alias dcs="docker-sync"
 alias zshconf="vim $HOME/.zshrc"
 alias zshrel="source $HOME/.zshrc"
-#alias date="gdate"
-alias g++="/usr/local/bin/g++-11"
+
 alias k="kubectl"
 alias kd="kubectl describe"
+
 alias gcurl='curl --header "Authorization: Bearer $(gcloud auth print-identity-token)"'
 alias jqless='jq '.' -C | less -R'
 
@@ -34,8 +30,9 @@ MANPATH="/usr/local/opt/coreutils/libexec/gnuman\
 :/usr/local/opt/grep/libexec/gnuman\
 :$MANPATH"
 
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+[[ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc' ]] && source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+[[ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc' ]] &&
+  source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 function current_gcp_project() {
   if [[ -n $CLOUDSDK_ACTIVE_CONFIG_NAME ]]; then
@@ -45,15 +42,17 @@ function current_gcp_project() {
 
 PROMPT=$(
   cat <<EOL
-%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%D{[%X]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} %{$fg[red]%}[hoge] %{$reset_color%}
+%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%D{[%X]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%}
 %{$fg[blue]%}->%{$fg_bold[blue]%} %#%{$reset_color%} 
 EOL
 )
 
 export LESS='-g -i -M -R -W -z-4 -x4'
 
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
+if command -v pyenv >/dev/null; then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
@@ -68,7 +67,6 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="candy"
@@ -78,7 +76,10 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source <(kubectl completion zsh)
+
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh)
+fi
 
 # You may need to manually set your language environment
 export LANG=ja_JP.UTF-8
@@ -116,14 +117,11 @@ setopt hist_ignore_space
 # ヒストリに保存するときに余分なスペースを削除する
 setopt hist_reduce_blanks
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR="vim"
-else
-  export EDITOR="vim"
-fi
+export EDITOR="vim"
 
-eval "$(direnv hook zsh)"
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
 
 plugins=(git docker docker-compose gcloud kubectl)
 

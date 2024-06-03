@@ -79,13 +79,10 @@ link_files() {
 initialize() {
   # install homebrew
   if ! command -v brew > /dev/null 2>&1; then
-      # Install homebrew: https://brew.sh/
-      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-      echo
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
   echo "$(tput setaf 2)Install homebrew complete!. ✔︎$(tput sgr0)"
   brew bundle
-  ;;
   echo "$(tput setaf 2)Initialize complete!. ✔︎$(tput sgr0)"
 }
 
