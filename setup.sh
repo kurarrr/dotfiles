@@ -2,7 +2,7 @@
 
 set -e
 OS="$(uname -s)"
-DOT_DIRECTORY="${HOME}/dotfiles"
+DOT_DIRECTORY="${HOME}/src/github.com/kurarrr/dotfiles"
 DOT_TARBALL="https://github.com/kurarrr/dotfiles/tarball/master"
 REMOTE_URL="git@github.com:kurarrr/dotfiles.git"
 
