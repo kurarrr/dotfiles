@@ -1,6 +1,14 @@
 # Shared shell config (aliases, PATH, env, common functions)
 [ -f "$HOME/.shell_common.sh" ] && source "$HOME/.shell_common.sh"
 
+# nodenv
+if [ -d "$HOME/.nodenv/bin" ]; then
+  export PATH="$HOME/.nodenv/bin:$PATH"
+fi
+if command -v nodenv >/dev/null 2>&1; then
+  eval "$(nodenv init -)"
+fi
+
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="candy"

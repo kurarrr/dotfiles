@@ -18,6 +18,9 @@ alias gcurl='curl --header "Authorization: Bearer $(gcloud auth print-identity-t
 alias jqless='jq "." -C | less -R'
 
 # --- Paths & Environment ---
+export NODENV_ROOT="${NODENV_ROOT:-$HOME/.nodenv}"
+PATH="$NODENV_ROOT/bin:$PATH"
+
 export GOPATH="$HOME/go"
 export PATH="$PATH:$HOME/bin:/usr/local/bin:/usr/bin:/sbin:/opt/local/bin:$HOME/.pyenv/bin:$HOME/.poetry/bin:$GOPATH/bin"
 
