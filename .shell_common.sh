@@ -1,5 +1,11 @@
 # Shared shell configuration for both zsh and bash.
 
+# Prevent double-loading when both .zprofile and .zshrc source this file.
+if [ -n "${SHELL_COMMON_LOADED:-}" ]; then
+  return
+fi
+SHELL_COMMON_LOADED=1
+
 # --- Aliases ---
 alias dcp="docker compose"
 alias zshconf="vim $HOME/.zshrc"
@@ -171,4 +177,3 @@ function git-delete-merged-branch() {
       ;;
   esac
 }
-
