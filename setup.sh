@@ -101,6 +101,14 @@ link_files() {
   echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 }
 
+link_git_ignore() {
+  mkdir -p "${HOME}/.config/git"
+  if [ -e "${HOME}/.config/git/ignore" ]; then
+    rm -f "${HOME}/.config/git/ignore"
+  fi
+  ln -snfv "${DOT_DIRECTORY}/.config/git/ignore" "${HOME}/.config/git/ignore"
+}
+
 initialize() {
   # install homebrew
   if ! command -v brew > /dev/null 2>&1; then
@@ -131,9 +139,11 @@ command=$1
 case $command in
   link_files)
     link_files
+    link_git_ignore
     ;;
   deploy)
     link_files
+    link_git_ignore
     mac_configure
     app_settings
     ;;

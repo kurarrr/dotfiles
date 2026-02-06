@@ -1,5 +1,4 @@
 [core]
-  excludesfile = ${HOME}/.gitignore_global
 [user]
   email = reverse.engau@gmail.com
   name = kurarrr

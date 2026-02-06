@@ -1,4 +1,6 @@
 *~
+.claude
+CLAUDE.md
 .DS_Store
 node_modules/
 __pycache__
@@ -10,4 +12,3 @@ bower_components
 .flake8
 debug_workspace
 debug_workspace/
-
