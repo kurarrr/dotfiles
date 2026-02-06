@@ -14,7 +14,7 @@ alias k="kubectl"
 alias kg="kubectl get"
 alias kd="kubectl describe"
 alias ktx="kubectx"
-alias gcurl='curl --header "Authorization: Bearer $(gcloud auth print-identity-token)"'
+alias gcurl='curl --header "Authorization: Bearer $(gcloud auth print-access-token)"'
 alias jqless='jq "." -C | less -R'
 
 # --- Paths & Environment ---
