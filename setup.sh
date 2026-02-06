@@ -60,15 +60,40 @@ mac_configure(){
 }
 
 link_files() {
+  # Files to force overwrite (managed by dotfiles)
+  local force_overwrite_files=(
+    ".bashrc"
+    ".gitconfig"
+    ".gitignore_global"
+    ".shell_common.sh"
+    ".tmux.conf"
+    ".vimrc"
+    ".zprofile"
+    ".zshrc"
+  )
+  
   # add symbolic link
   for f in .??*
   do
-    # Force remove the vim directory if it's already there
-    [ -n "${OVERWRITE}" -a -e ${HOME}/${f} ] && rm -f ${HOME}/${f}
-    if [ ! -e ${HOME}/${f} ]; then
-      # If you have ignore files, add file/directory name here
-      [[ ${f} = ".git" ]] && continue
-      [[ ${f} = ".gitignore" ]] && continue
+    # If you have ignore files, add file/directory name here
+    [[ ${f} = ".git" ]] && continue
+    [[ ${f} = ".gitignore" ]] && continue
+    
+    # Check if this file should be force overwritten
+    local should_force_overwrite=false
+    for managed_file in "${force_overwrite_files[@]}"; do
+      if [[ ${f} = ${managed_file} ]]; then
+        should_force_overwrite=true
+        break
+      fi
+    done
+    
+    # Force remove if it's a managed file
+    if [ ${should_force_overwrite} = true ] && [ -e ${HOME}/${f} ]; then
+      rm -rf ${HOME}/${f}
+      ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
+    elif [ ! -e ${HOME}/${f} ]; then
+      # Create link only if file doesn't exist
       ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
     fi
   done
