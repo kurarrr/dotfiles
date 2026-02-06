@@ -22,7 +22,7 @@ export NODENV_ROOT="${NODENV_ROOT:-$HOME/.nodenv}"
 PATH="$NODENV_ROOT/bin:$PATH"
 
 export GOPATH="$HOME/go"
-export PATH="$PATH:$HOME/bin:/usr/local/bin:/usr/bin:/sbin:/opt/local/bin:$HOME/.pyenv/bin:$HOME/.poetry/bin:$GOPATH/bin"
+export PATH="$PATH:$HOME/bin:/usr/local/bin:/usr/bin:/sbin:/opt/local/bin:$HOME/.pyenv/bin:$HOME/.poetry/bin:$GOPATH/bin:/opt/homebrew/share/google-cloud-sdk/bin"
 
 # Prefer GNU coreutils when available.
 for _p in \
