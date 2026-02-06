@@ -44,6 +44,9 @@ setopt hist_reduce_blanks
 fpath=($ZSH/custom/completions $fpath)
 autoload -U compinit && compinit
 
+# Load z.sh
+[ -f "$HOME/.zfunc/z.sh" ] && source "$HOME/.zfunc/z.sh"
+
 # Functions
 fzf-z-search() {
   local res=$(z | sort -rn | cut -c 12- | fzf)

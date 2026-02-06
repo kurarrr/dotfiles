@@ -70,6 +70,7 @@ link_files() {
     ".vimrc"
     ".zprofile"
     ".zshrc"
+    ".zfunc"
   )
   
   # add symbolic link
@@ -78,6 +79,7 @@ link_files() {
     # If you have ignore files, add file/directory name here
     [[ ${f} = ".git" ]] && continue
     [[ ${f} = ".gitignore" ]] && continue
+    [[ ${f} = ".config" ]] && continue
     
     # Check if this file should be force overwritten
     local should_force_overwrite=false
