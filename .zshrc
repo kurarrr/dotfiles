@@ -9,6 +9,13 @@ if command -v nodenv >/dev/null 2>&1; then
   eval "$(nodenv init -)"
 fi
 
+# direnv
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+else
+  echo "direnv is not installed"
+fi
+
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="candy"
