@@ -14,6 +14,13 @@ fi
 # Shared shell config (aliases, PATH, env, common functions)
 [ -f "$HOME/.shell_common.sh" ] && source "$HOME/.shell_common.sh"
 
+# direnv
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+else
+  echo "direnv is not installed"
+fi
+
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="candy"
@@ -48,6 +55,9 @@ setopt hist_reduce_blanks
 # Completions
 fpath=($ZSH/custom/completions $fpath)
 autoload -U compinit && compinit
+
+# Load z.sh
+[ -f "$HOME/.zfunc/z.sh" ] && source "$HOME/.zfunc/z.sh"
 
 # Functions
 fzf-z-search() {
