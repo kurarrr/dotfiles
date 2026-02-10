@@ -1,18 +1,10 @@
-# Ensure Homebrew binaries are available even without the OMZ brew plugin
-if [ -d "/opt/homebrew/bin" ]; then
-  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-fi
+# Shared shell config (aliases, PATH, env, common functions)
+[ -f "$HOME/.shell_common.sh" ] && source "$HOME/.shell_common.sh"
 
 # nodenv
-if [ -d "$HOME/.nodenv/bin" ]; then
-  export PATH="$HOME/.nodenv/bin:$PATH"
-fi
 if command -v nodenv >/dev/null 2>&1; then
   eval "$(nodenv init -)"
 fi
-
-# Shared shell config (aliases, PATH, env, common functions)
-[ -f "$HOME/.shell_common.sh" ] && source "$HOME/.shell_common.sh"
 
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"

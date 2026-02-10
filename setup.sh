@@ -70,6 +70,7 @@ link_files() {
     ".vimrc"
     ".zprofile"
     ".zshrc"
+    ".zshenv"
   )
   
   # add symbolic link
