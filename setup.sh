@@ -136,6 +136,24 @@ link_git_ignore() {
   ln -snfv "${DOT_DIRECTORY}/.config/git/ignore" "${HOME}/.config/git/ignore"
 }
 
+link_mise_config() {
+  mkdir -p "${HOME}/.config"
+  if [ -e "${HOME}/.config/mise" ]; then
+    rm -rf "${HOME}/.config/mise"
+  fi
+  ln -snfv "${DOT_DIRECTORY}/.config/mise" "${HOME}/.config/mise"
+}
+
+install_mise_tools() {
+  if ! command -v mise > /dev/null 2>&1; then
+    echo "mise not found. Skipping mise install."
+    return
+  fi
+  echo "Installing mise tools..."
+  mise install
+  echo "mise tools installed. ✔︎"
+}
+
 mac_configure() {
   source "${DOT_DIRECTORY}/macos/configure"
 }
@@ -171,12 +189,15 @@ case "${command}" in
     link_files
     link_starship_config
     link_git_ignore
+    link_mise_config
+    install_mise_tools
     echo "Install complete. ✔︎"
     ;;
   link)
     link_files
     link_starship_config
     link_git_ignore
+    link_mise_config
     ;;
   configure)
     mac_configure

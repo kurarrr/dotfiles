@@ -1,0 +1,6 @@
+[tools]
+go = "latest"
+java = "latest"
+node = "24"
+python = "3.12"
+terraform = "latest"
