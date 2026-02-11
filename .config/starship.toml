@@ -2,6 +2,8 @@ format = """
 $directory\
 $git_branch\
 $git_status\
+$gcloud\
+$aws\
 $kubernetes\
 $python\
 $nodejs\
@@ -24,6 +26,12 @@ format = '([$all_status$ahead_behind]($style) )'
 [kubernetes]
 disabled = false
 format = '[$symbol$context( \($namespace\))]($style) '
+
+[gcloud]
+format = '[$symbol$project]($style) '
+
+[aws]
+format = '[$symbol($profile )(\($region\) )]($style)'
 
 [cmd_duration]
 min_time = 3000
