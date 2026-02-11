@@ -10,6 +10,7 @@ brew "wget"
 brew "zsh"
 brew "zoxide"
 brew "starship"
+brew "bat"
 
 # Cask apps
 cask "1password"

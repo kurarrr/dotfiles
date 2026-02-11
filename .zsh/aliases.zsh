@@ -8,3 +8,5 @@ alias kd="kubectl describe"
 alias ktx="kubectx"
 alias gcurl='curl --header "Authorization: Bearer $(gcloud auth print-access-token)"'
 alias jqless='jq "." -C | less -R'
+alias cat="bat --paging=never --style=plain"
+alias less="bat --paging=always"

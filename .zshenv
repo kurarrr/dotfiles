@@ -1,3 +1,6 @@
+# Homebrew completions
+fpath=( /opt/homebrew/share/zsh/site-functions $fpath )
+
 # PATH configuration
 path=(
   /opt/homebrew/bin(N-/)
@@ -52,3 +55,6 @@ export EDITOR="vim"
 export LANG=ja_JP.UTF-8
 export LC_ALL=ja_JP.UTF-8
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
+
+# bat
+export BAT_THEME="TwoDark"
