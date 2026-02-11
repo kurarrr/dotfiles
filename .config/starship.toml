@@ -10,6 +10,7 @@ $nodejs\
 $golang\
 $java\
 $cmd_duration\
+$time\
 $line_break\
 $character"""
 
@@ -35,6 +36,10 @@ format = '[$symbol($profile )(\($region\) )]($style)'
 
 [cmd_duration]
 min_time = 3000
+
+[time]
+disabled = false
+format = '[$time]($style) '
 
 [character]
 success_symbol = "[❯](bold green)"
