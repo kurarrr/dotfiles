@@ -87,10 +87,8 @@ install_brew_deps() {
 
 link_files() {
   local force_overwrite_files=(
-    ".bashrc"
     ".gitconfig"
     ".gitignore_global"
-    ".shell_common.sh"
     ".tmux.conf"
     ".vimrc"
     ".zprofile"
