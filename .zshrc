@@ -6,21 +6,6 @@ if command -v nodenv >/dev/null 2>&1; then
   eval "$(nodenv init -)"
 fi
 
-# Oh My Zsh
-export ZSH="$HOME/.oh-my-zsh"
-export ZSH_THEME="candy"
-# Build plugin list and only add zsh-kubectl-prompt when installed.
-plugins=(git pyenv kubectl gcloud)
-if [ -d "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-kubectl-prompt" ]; then
-  plugins+=(zsh-kubectl-prompt)
-fi
-source $ZSH/oh-my-zsh.sh
-
-# Kubectl Completion
-if command -v kubectl >/dev/null 2>&1; then
-  source <(kubectl completion zsh)
-fi
-
 # Language Settings
 setopt print_eight_bit
 
@@ -37,9 +22,37 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
 
-# Completions
-fpath=($ZSH/custom/completions $fpath)
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-patch-dl \
+
+# Git (補完 + 情報)
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+
+# kubectl prompt
+zinit light superbrothers/zsh-kubectl-prompt
+
+# kubectl 補完（公式）
+zinit ice as"completion"
+zinit light kubernetes/kubectl
+
+# z
+zinit light rupa/z
+
+# fzf
+zinit light junegunn/fzf
+
 autoload -U compinit && compinit
+
+eval "$(atuin init zsh)"
 
 # Functions
 fzf-z-search() {
@@ -55,7 +68,5 @@ fzf-z-search() {
 zle -N fzf-z-search
 bindkey '^f' fzf-z-search
 
-# Prompt
-PROMPT='%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%D{[%X]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%}
-$(git_prompt_info) %{$fg[yellow]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}
-%{$fg[blue]%}->%{$fg_bold[blue]%} %#%{$reset_color%} '
+zinit from"gh-r" as"program" for starship/starship
+eval "$(starship init zsh)"
