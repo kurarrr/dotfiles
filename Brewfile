@@ -8,6 +8,8 @@ brew "jq"
 brew "tree"
 brew "wget"
 brew "zsh"
+brew "zoxide"
+brew "starship"
 
 # Cask apps
 cask "1password"

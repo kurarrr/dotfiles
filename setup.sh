@@ -122,6 +122,14 @@ link_files() {
   echo "Symlinks created. ✔︎"
 }
 
+link_starship_config() {
+  mkdir -p "${HOME}/.config"
+  if [ -e "${HOME}/.config/starship.toml" ]; then
+    rm -f "${HOME}/.config/starship.toml"
+  fi
+  ln -snfv "${DOT_DIRECTORY}/.config/starship.toml" "${HOME}/.config/starship.toml"
+}
+
 link_git_ignore() {
   mkdir -p "${HOME}/.config/git"
   if [ -e "${HOME}/.config/git/ignore" ]; then
@@ -163,11 +171,13 @@ case "${command}" in
     install_zinit
     install_brew_deps
     link_files
+    link_starship_config
     link_git_ignore
     echo "Install complete. ✔︎"
     ;;
   link)
     link_files
+    link_starship_config
     link_git_ignore
     ;;
   configure)

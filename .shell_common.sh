@@ -94,13 +94,6 @@ if command -v direnv >/dev/null 2>&1; then
   fi
 fi
 
-# z (jump around) from Homebrew
-if command -v brew >/dev/null 2>&1; then
-  _brew_prefix="$(brew --prefix)"
-  [ -f "$_brew_prefix/etc/profile.d/z.sh" ] && . "$_brew_prefix/etc/profile.d/z.sh"
-  unset _brew_prefix
-fi
-
 # fzf
 if [ -n "$ZSH_VERSION" ] && [ -f "$HOME/.fzf.zsh" ]; then
   source "$HOME/.fzf.zsh"

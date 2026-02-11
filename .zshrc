@@ -42,9 +42,6 @@ zinit light superbrothers/zsh-kubectl-prompt
 zinit ice as"completion"
 zinit light kubernetes/kubectl
 
-# z
-zinit light rupa/z
-
 # fzf
 zinit light junegunn/fzf
 
@@ -52,19 +49,19 @@ autoload -U compinit && compinit
 
 eval "$(atuin init zsh)"
 
+# zoxide
+eval "$(zoxide init zsh)"
+
 # Functions
 fzf-z-search() {
-  local res=$(z | sort -rn | cut -c 12- | fzf)
+  local res=$(zoxide query -l | fzf --no-sort)
   if [ -n "$res" ]; then
-    BUFFER+="cd $res"
+    BUFFER="cd ${(q)res}"
     zle accept-line
-  else
-    return 1
   fi
 }
 
 zle -N fzf-z-search
 bindkey '^f' fzf-z-search
 
-zinit from"gh-r" as"program" for starship/starship
 eval "$(starship init zsh)"
