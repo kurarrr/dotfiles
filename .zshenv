@@ -10,9 +10,3 @@ path=(
   /usr/sbin(N-/)
   /sbin(N-/)
 )
-
-# nodenv
-path=(
-  $HOME/.nodenv/bin(N-/)
-  $path
-)

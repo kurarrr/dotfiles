@@ -1,10 +1,8 @@
 # Shared shell config (aliases, PATH, env, common functions)
 [ -f "$HOME/.shell_common.sh" ] && source "$HOME/.shell_common.sh"
 
-# nodenv
-if command -v nodenv >/dev/null 2>&1; then
-  eval "$(nodenv init -)"
-fi
+# mise
+eval "$(mise activate zsh)"
 
 # Language Settings
 setopt print_eight_bit
