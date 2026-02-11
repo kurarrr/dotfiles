@@ -79,6 +79,15 @@ function init_aws_profile() {
   direnv allow
 }
 
+function yy() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
 gcsavro() {
   for f in $(gsutil ls "$1"); do
     gsutil cat "$f" | avro-tools tojson - | jq

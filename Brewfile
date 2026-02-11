@@ -11,6 +11,7 @@ brew "zsh"
 brew "zoxide"
 brew "starship"
 brew "bat"
+brew "yazi"
 
 # Cask apps
 cask "1password"

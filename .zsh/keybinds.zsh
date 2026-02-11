@@ -8,3 +8,7 @@ fzf-z-search() {
 
 zle -N fzf-z-search
 bindkey '^f' fzf-z-search
+
+yy-widget() { yy; zle reset-prompt }
+zle -N yy-widget
+bindkey '^y' yy-widget
