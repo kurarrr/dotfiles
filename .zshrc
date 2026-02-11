@@ -1,45 +1,8 @@
-# Ensure Homebrew binaries are available even without the OMZ brew plugin
-if [ -d "/opt/homebrew/bin" ]; then
-  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-fi
-
-# nodenv
-if [ -d "$HOME/.nodenv/bin" ]; then
-  export PATH="$HOME/.nodenv/bin:$PATH"
-fi
-if command -v nodenv >/dev/null 2>&1; then
-  eval "$(nodenv init -)"
-fi
-
-# Shared shell config (aliases, PATH, env, common functions)
-[ -f "$HOME/.shell_common.sh" ] && source "$HOME/.shell_common.sh"
-
-# direnv
-if command -v direnv >/dev/null 2>&1; then
-  eval "$(direnv hook zsh)"
-else
-  echo "direnv is not installed"
-fi
-
-# Oh My Zsh
-export ZSH="$HOME/.oh-my-zsh"
-export ZSH_THEME="candy"
-# Build plugin list and only add zsh-kubectl-prompt when installed.
-plugins=(git pyenv kubectl gcloud)
-if [ -d "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-kubectl-prompt" ]; then
-  plugins+=(zsh-kubectl-prompt)
-fi
-source $ZSH/oh-my-zsh.sh
-
-# Kubectl Completion
-if command -v kubectl >/dev/null 2>&1; then
-  source <(kubectl completion zsh)
-fi
-
-# Language Settings
-setopt print_eight_bit
+# mise
+eval "$(mise activate zsh)"
 
 # Zsh Options
+setopt print_eight_bit
 setopt auto_cd
 setopt no_beep
 setopt nolistbeep
@@ -52,28 +15,22 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
 
-# Completions
-fpath=($ZSH/custom/completions $fpath)
-autoload -U compinit && compinit
+source "$HOME/.zsh/aliases.zsh"
 
-# Load z.sh
-[ -f "$HOME/.zfunc/z.sh" ] && source "$HOME/.zfunc/z.sh"
+source "$HOME/.zsh/zinit.zsh"
 
-# Functions
-fzf-z-search() {
-  local res=$(z | sort -rn | cut -c 12- | fzf)
-  if [ -n "$res" ]; then
-    BUFFER+="cd $res"
-    zle accept-line
-  else
-    return 1
-  fi
-}
+# --- Tool hooks ---
+eval "$(atuin init zsh)"
+eval "$(zoxide init zsh)"
 
-zle -N fzf-z-search
-bindkey '^f' fzf-z-search
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
 
-# Prompt
-PROMPT='%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%D{[%X]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%}
-$(git_prompt_info) %{$fg[yellow]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}
-%{$fg[blue]%}->%{$fg_bold[blue]%} %#%{$reset_color%} '
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+
+source "$HOME/.zsh/keybinds.zsh"
+source "$HOME/.zsh/functions.zsh"
+
+# --- Prompt ---
+eval "$(starship init zsh)"

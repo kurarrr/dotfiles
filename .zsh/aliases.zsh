@@ -1,0 +1,10 @@
+alias dcp="docker compose"
+alias zshconf="vim $HOME/.zshrc"
+alias zshrel="source $HOME/.zshrc"
+alias dotlink="$HOME/src/github.com/kurarrr/dotfiles/setup.sh link"
+alias k="kubectl"
+alias kg="kubectl get"
+alias kd="kubectl describe"
+alias ktx="kubectx"
+alias gcurl='curl --header "Authorization: Bearer $(gcloud auth print-access-token)"'
+alias jqless='jq "." -C | less -R'
