@@ -1,75 +1,20 @@
-tap "eugenmayer/dockersync"
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
-tap "mutagen-io/mutagen"
-brew "xz"
-brew "ansible"
-brew "awscli"
-brew "boost"
-brew "glib"
-brew "cairo"
-brew "cmake"
-brew "dep"
-brew "docker-machine", link: false
-brew "libtool"
-brew "pkg-config"
-brew "gnutls"
-brew "gobject-introspection"
-brew "harfbuzz"
-brew "ffmpeg"
-brew "gcc"
-brew "httpie"
-brew "jq"
-brew "mas"
-brew "node"
-brew "nodenv"
-brew "pyenv"
-brew "pyenv-virtualenv"
-brew "ruby-build"
-brew "rbenv"
-brew "rbenv-gemset"
-brew "reattach-to-user-namespace"
-brew "rename"
-brew "sl"
-brew "sshrc"
-brew "swig"
-brew "terraform"
-brew "thefuck"
+# CLI tools
+brew "mise"
+brew "ghq"
+brew "fzf"
+brew "atuin"
 brew "tmux"
+brew "jq"
 brew "tree"
-brew "unrar"
 brew "wget"
-brew "yarn"
 brew "zsh"
-brew "zsh-completions"
-brew "mutagen-io/mutagen/mutagen"
+
+# Cask apps
 cask "1password"
 cask "1password-cli"
-cask "clipy"
 cask "docker"
-cask "gitkraken"
-cask "google-backup-and-sync"
 cask "google-chrome"
 cask "google-japanese-ime"
-cask "iterm2"
 cask "karabiner-elements"
-cask "mendeley"
-cask "skitch"
 cask "slack"
-cask "tableplus"
 cask "visual-studio-code"
-cask "vlc"
-cask "zoomus"
-mas "Activity Timer", id: 808647808
-mas "Be Focused", id: 973134470
-mas "Keynote", id: 409183694
-mas "LINE", id: 539883307
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Word", id: 462054704
-mas "ScreenPointer", id: 1368204906
-mas "Spark", id: 1176895641
-mas "The Unarchiver", id: 425424353
-mas "Todoist", id: 585829637
-mas "Xcode", id: 497799835
