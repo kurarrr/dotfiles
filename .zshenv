@@ -5,7 +5,6 @@ fpath=( /opt/homebrew/share/zsh/site-functions $fpath )
 path=(
   /opt/homebrew/bin(N-/)
   /opt/homebrew/sbin(N-/)
-  /opt/homebrew/opt/openjdk@21/bin(N-/)
   /usr/local/bin(N-/)
   /usr/local/sbin(N-/)
   /usr/bin(N-/)
@@ -17,33 +16,20 @@ path=(
   /opt/homebrew/share/google-cloud-sdk/bin(N-/)
 )
 
-# Go
-export GOPATH="$HOME/go"
-path+=( $GOPATH/bin(N-/) )
-
-# JDK
-if command -v /usr/libexec/java_home >/dev/null 2>&1; then
-  JAVA_HOME=$(/usr/libexec/java_home -v 21 2>/dev/null) && export JAVA_HOME
-  path=( $JAVA_HOME/bin $path )
-fi
-
-# GNU coreutils (Intel Mac)
-for _p in /usr/local/opt/{coreutils,gnu-sed,gawk,findutils,grep}/libexec/gnubin; do
-  [ -d "$_p" ] && path=( $_p $path )
+# GNU coreutils (prepend to PATH)
+for _p in /opt/homebrew/opt/{coreutils,gnu-sed,gawk,findutils,grep}/libexec/gnubin(N-/); do
+  path=( $_p $path )
 done
-for _m in /usr/local/opt/{coreutils,gnu-sed,gawk,findutils,grep}/libexec/gnuman; do
-  [ -d "$_m" ] && MANPATH="$_m:${MANPATH:-/usr/share/man}"
+
+# MANPATH configuration
+for _m in /opt/homebrew/opt/{coreutils,gnu-sed,gawk,findutils,grep}/libexec/gnuman(N-/); do
+  MANPATH="$_m:${MANPATH:-/usr/share/man}"
 done
 export MANPATH
 
 # Google Cloud SDK
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-
-# C++
-export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:$HOME/.csrc:/usr/local/Cellar/boost/1.70.0/include"
-export LDFLAGS="-L/usr/local/opt/openblas/lib"
-export CPPFLAGS="-I/usr/local/opt/openblas/include"
 
 # Docker
 export DOCKER_BUILDKIT=1
