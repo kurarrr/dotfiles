@@ -137,7 +137,7 @@ link_git_ignore() {
 }
 
 mac_configure() {
-  source "${DOT_DIRECTORY}/lib/configure"
+  source "${DOT_DIRECTORY}/macos/configure"
 }
 
 # ── If missing, download and extract the dotfiles repository ─────────
