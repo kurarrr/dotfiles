@@ -23,7 +23,7 @@ zinit light kubernetes/kubectl
 # fzf
 zinit light junegunn/fzf
 
-# Google Cloud SDK (completion)
-zinit snippet /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc
-
 autoload -U compinit && compinit
+
+# Google Cloud SDK (completion) — bashcompinit ベースなので compinit の後に読む
+source /opt/homebrew/share/google-cloud-sdk/completion.zsh.inc
