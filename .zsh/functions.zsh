@@ -82,9 +82,14 @@ function init_aws_profile() {
 function yy() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
   yazi "$@" --cwd-file="$tmp"
-  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+  if cwd="$(cat -- "$tmp")" \
+    && [ -n "$cwd" ] \
+    && [ "$cwd" != "$PWD" ] \
+    && [ -d "$cwd" ]
+  then
     cd -- "$cwd"
   fi
+
   rm -f -- "$tmp"
 }
 
