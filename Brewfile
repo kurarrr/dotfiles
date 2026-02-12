@@ -12,6 +12,9 @@ brew "zoxide"
 brew "starship"
 brew "bat"
 brew "yazi"
+brew "ripgrep"
+brew "fd"
+brew "eza"
 
 # Cask apps
 cask "1password"

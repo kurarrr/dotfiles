@@ -10,3 +10,12 @@ alias gcurl='curl --header "Authorization: Bearer $(gcloud auth print-access-tok
 alias jqless='jq "." -C | less -R'
 alias cat="bat --paging=never --style=plain"
 alias less="bat --paging=always"
+alias openr="open -R"
+
+# Modern CLI replacements
+alias grep="rg"
+alias find="fd"
+alias ls="eza --icons --git"
+alias ll="eza --icons --git -l"
+alias la="eza --icons --git -la"
+alias tree="eza --tree --icons"
