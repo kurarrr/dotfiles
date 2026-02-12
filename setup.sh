@@ -144,11 +144,21 @@ link_mise_config() {
   ln -snfv "${DOT_DIRECTORY}/.config/mise" "${HOME}/.config/mise"
 }
 
+link_yazi_config() {
+  mkdir -p "${HOME}/.config"
+  if [ -e "${HOME}/.config/yazi" ]; then
+    rm -rf "${HOME}/.config/yazi"
+  fi
+  ln -snfv "${DOT_DIRECTORY}/.config/yazi" "${HOME}/.config/yazi"
+}
+
 install_mise_tools() {
   if ! command -v mise > /dev/null 2>&1; then
     echo "mise not found. Skipping mise install."
     return
   fi
+  echo "Trusting mise config..."
+  mise trust
   echo "Installing mise tools..."
   mise install
   echo "mise tools installed. ✔︎"
@@ -190,6 +200,7 @@ case "${command}" in
     link_starship_config
     link_git_ignore
     link_mise_config
+    link_yazi_config
     install_mise_tools
     echo "Install complete. ✔︎"
     ;;
@@ -198,6 +209,7 @@ case "${command}" in
     link_starship_config
     link_git_ignore
     link_mise_config
+    link_yazi_config
     ;;
   configure)
     mac_configure

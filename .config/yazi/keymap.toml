@@ -1,0 +1,9 @@
+[[mgr.prepend_keymap]]
+on = ["<C-c>"]
+run = "shell -- code %s"
+desc = "Open in VS Code"
+
+[[mgr.prepend_keymap]]
+on = ["<C-o>"]
+run = "shell --confirm -- open -R %s"
+desc = "Open in Finder with selection"
