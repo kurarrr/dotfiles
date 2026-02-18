@@ -1,5 +1,6 @@
 # mise
 eval "$(mise activate zsh)"
+export CLOUDSDK_PYTHON="$(mise which python3)"
 
 # Zsh Options
 setopt print_eight_bit
