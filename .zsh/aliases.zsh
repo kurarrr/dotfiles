@@ -8,14 +8,16 @@ alias kd="kubectl describe"
 alias ktx="kubectx"
 alias gcurl='curl --header "Authorization: Bearer $(gcloud auth print-access-token)"'
 alias jqless='jq "." -C | less -R'
-alias cat="bat --paging=never --style=plain"
-alias less="bat --paging=always"
 alias openr="open -R"
 
-# Modern CLI replacements
-alias grep="rg"
-alias find="fd"
-alias ls="eza --icons --git"
-alias ll="eza --icons --git -l"
-alias la="eza --icons --git -la"
-alias tree="eza --tree --icons"
+# Modern CLI replacements (interactive only - skip for scripts/LLM agents)
+if [[ -o interactive ]]; then
+  alias cat="bat --paging=never --style=plain"
+  alias less="bat --paging=always"
+  alias grep="rg"
+  alias find="fd"
+  alias ls="eza --icons --git"
+  alias ll="eza --icons --git -l"
+  alias la="eza --icons --git -la"
+  alias tree="eza --tree --icons"
+fi
