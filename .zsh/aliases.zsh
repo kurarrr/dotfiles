@@ -14,8 +14,6 @@ alias openr="open -R"
 if [[ -o interactive ]]; then
   alias cat="bat --paging=never --style=plain"
   alias less="bat --paging=always"
-  alias grep="rg"
-  alias find="fd"
   alias ls="eza --icons --git"
   alias ll="eza --icons --git -l"
   alias la="eza --icons --git -la"
