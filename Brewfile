@@ -19,7 +19,7 @@ brew "eza"
 # Cask apps
 cask "1password"
 cask "1password-cli"
-cask "docker"
+cask "docker-desktop"
 cask "google-chrome"
 cask "google-japanese-ime"
 cask "karabiner-elements"
