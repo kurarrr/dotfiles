@@ -1,10 +1,7 @@
 *~
-.claude
-CLAUDE.md
 .DS_Store
 node_modules/
 __pycache__
-bower_components
 /vendor/bundle
 .vscode
 .venv
@@ -12,3 +9,5 @@ bower_components
 .flake8
 debug_workspace
 debug_workspace/
+settings.local.json
+
