@@ -10,4 +10,5 @@ bower_components
 .flake8
 debug_workspace
 debug_workspace/
+.pnpm_store
 
