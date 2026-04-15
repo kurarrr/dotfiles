@@ -11,3 +11,5 @@ bower_components
 .flake8
 debug_workspace
 debug_workspace/
+.pnpm-store
+**/skills/local-*
