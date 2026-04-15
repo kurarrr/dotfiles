@@ -11,4 +11,5 @@ bower_components
 debug_workspace
 debug_workspace/
 .pnpm_store
+**/skills/local-*
 
