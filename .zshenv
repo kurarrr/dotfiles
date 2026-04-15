@@ -30,6 +30,7 @@ done
 export MANPATH
 
 # Google Cloud SDK
+export CLOUDSDK_PYTHON="$(mise which python3)"
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 

@@ -7,7 +7,7 @@ bower_components
 .vscode
 .venv
 .envrc
+.worktree_owner
 .flake8
 debug_workspace
 debug_workspace/
-

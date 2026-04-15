@@ -18,3 +18,6 @@ bindkey '^f' fzf-z-search
 yy-widget() { yy; zle reset-prompt }
 zle -N yy-widget
 bindkey '^y' yy-widget
+
+bindkey '\e[1;3D' backward-word  # Option+Left
+bindkey '\e[1;3C' forward-word   # Option+Right
